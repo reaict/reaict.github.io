@@ -1,5 +1,3 @@
 theme: minima
 title: REAICT
 future: true
-minima:
-  hide_site_feed_link: true
