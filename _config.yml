@@ -1,8 +1,5 @@
 theme: minima
 title: REAICT
 future: true
-exclude:
-  - feed.xml
-minima:
-  skin: dark
-  date_format: "%d/%m/%Y"
+plugins:
+  - jekyll-seo-tag
