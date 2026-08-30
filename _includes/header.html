@@ -1,0 +1,10 @@
+<header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" href="{{ "/" | relative_url }}">
+      {%- if site.logo -%}
+        <img src="{{ "/assets/" | append: site.logo | relative_url }}" alt="logo" style="height: 40px; vertical-align: middle;">
+      {%- endif -%}
+      {{ site.title }}
+    </a>
+  </div>
+</header>
