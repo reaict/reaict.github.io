@@ -1,5 +1,5 @@
 theme: minima
 title: REAICT
 future: true
-plugins:
-  - jekyll-seo-tag
+minima:
+  hide_site_feed_link: true
