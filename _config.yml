@@ -1,3 +1,4 @@
 theme: minima
 title: REAICT
 future: true
+show_excerpts: true
