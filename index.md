@@ -75,9 +75,3 @@ Bienvenue !
     </text>
   </svg>
 </div>
- 
-    <text x="340" y="230" text-anchor="middle" dominant-baseline="central" font-size="32" font-weight="500" letter-spacing="2" font-family="sans-serif">
-      <tspan class="aicr-flank" fill="currentColor">RE</tspan><tspan class="aicr-ai" fill="#1D9E75">AI</tspan><tspan class="aicr-flank" fill="currentColor">CT</tspan>
-    </text>
-  </svg>
-</div>
