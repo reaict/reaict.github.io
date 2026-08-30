@@ -1,3 +1,5 @@
-## REAICT
+---
+layout: home
+---
 
 Bienvenue !
