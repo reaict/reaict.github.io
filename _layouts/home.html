@@ -6,8 +6,25 @@ layout: default
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
   {{ content }}
-  <br>
+  
   <h2>Bienvenue</h2>
+  {%- assign done_count = 0 -%}
+  {%- assign next_day = 0 -%}
+  {%- for i in (1..100) -%}
+    {%- for post in site.posts -%}
+      {%- if post.day == i -%}
+        {%- assign done_count = done_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- assign next_day = done_count | plus: 1 -%}
+  <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px;">
+    <span style="font-size: 22px; font-weight: 500;">{{ done_count }}</span>
+    <span style="font-size: 13px; color: #888;">/ 100 jours</span>
+  </div>
+  <div style="height: 6px; background: #eee; border-radius: 3px; overflow: hidden; max-width: 300px; margin: 0 auto 16px;">
+    <div style="height: 100%; width: {{ done_count }}%; background: #2ecc71; border-radius: 3px;"></div>
+  </div>
   <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 300px; margin: 0 auto;">
     {%- for i in (1..100) -%}
       {%- assign found_post = nil -%}
@@ -17,15 +34,16 @@ layout: default
         {%- endif -%}
       {%- endfor -%}
       {%- if found_post -%}
-        <a href="{{ found_post.url | relative_url }}" title="{{ found_post.title }}" style="display: block; aspect-ratio: 1; background: #2ecc71; border-radius: 4px; text-decoration: none;"></a>
+        <a href="{{ found_post.url | relative_url }}" title="{{ found_post.title }}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #2ecc71; border-radius: 4px; text-decoration: none; font-size: 9px; color: #fff;">{{ i }}</a>
+      {%- elsif i == next_day -%}
+        <div style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #eafaf1; border: 2px solid #2ecc71; border-radius: 4px; font-size: 9px; color: #2ecc71;">{{ i }}</div>
       {%- else -%}
-        <div style="aspect-ratio: 1; background: #ddd; border-radius: 4px;"></div>
+        <div style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #ddd; border-radius: 4px; font-size: 9px; color: #999;">{{ i }}</div>
       {%- endif -%}
     {%- endfor -%}
   </div>
-  <br>
-
-  <h2>Le fil</h2>
+  
+  <h2>Trajectoire</h2>
   {%- assign sorted_posts = site.posts | sort: "date" -%}
   <div style="position: relative; margin: 20px 0; max-width: 600px;">
     <div style="position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: #ddd;"></div>
@@ -48,25 +66,4 @@ layout: default
       </div>
     {%- endfor -%}
   </div>
-  <br>
-
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-  {%- endif -%}
 </div>
