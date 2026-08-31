@@ -6,7 +6,23 @@ layout: default
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
   {{ content }}
-
+  <br>
+  <h2>Bienvenue</h2>
+  <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 300px; margin: 0 auto;">
+    {%- for i in (1..100) -%}
+      {%- assign found_post = nil -%}
+      {%- for post in site.posts -%}
+        {%- if post.day == i -%}
+          {%- assign found_post = post -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if found_post -%}
+        <a href="{{ found_post.url | relative_url }}" title="{{ found_post.title }}" style="display: block; aspect-ratio: 1; background: #2ecc71; border-radius: 4px; text-decoration: none;"></a>
+      {%- else -%}
+        <div style="aspect-ratio: 1; background: #ddd; border-radius: 4px;"></div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
   <br>
 
   <h2>Le fil</h2>
@@ -32,6 +48,25 @@ layout: default
       </div>
     {%- endfor -%}
   </div>
-
   <br>
+
+  {%- if site.posts.size > 0 -%}
+    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+    <ul class="post-list">
+      {%- for post in site.posts -%}
+      <li>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
 </div>
