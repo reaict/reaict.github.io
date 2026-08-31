@@ -23,6 +23,7 @@ layout: default
   <div style="height: 6px; background: #eee; border-radius: 3px; overflow: hidden; max-width: 300px; margin: 0 auto 16px;">
     <div style="height: 100%; width: {{ done_count }}%; background: #2ecc71; border-radius: 3px;"></div>
   </div>
+  
   <div style="display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 300px; margin: 0 auto;">
     {%- for i in (1..100) -%}
       {%- assign found_post = nil -%}
@@ -33,14 +34,25 @@ layout: default
       {%- endfor -%}
       {%- assign action = site.data.actions | where: "day", i | first -%}
       {%- if found_post -%}
-      <a href="{{ found_post.url | relative_url }}" title="{% if action %}{{ action.title }}{% else %}{{ found_post.title }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #2ecc71; border-radius: 4px; text-decoration: none; font-size: 9px; color: #fff;">{{ i }}</a>
+        <a href="{{ found_post.url | relative_url }}" title="{% if action %}{{ action.title }}{% else %}{{ found_post.title }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #2ecc71; border-radius: 4px; text-decoration: none; font-size: 9px; color: #fff;">{{ i }}</a>
       {%- elsif i == next_day -%}
-        <div title="{% if action %}{{ action.title }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #eafaf1; border: 2px solid #2ecc71; border-radius: 4px; font-size: 9px; color: #2ecc71;">{{ i }}</div>
+        <div class="aicr-day" data-title="{% if action %}{{ action.title | escape }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #eafaf1; border: 2px solid #2ecc71; border-radius: 4px; font-size: 9px; color: #2ecc71; cursor: pointer;">{{ i }}</div>
       {%- else -%}
-        <div title="{% if action %}{{ action.title }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #ddd; border-radius: 4px; font-size: 9px; color: #999;">{{ i }}</div>
+        <div class="aicr-day" data-title="{% if action %}{{ action.title | escape }}{% endif %}" style="display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #ddd; border-radius: 4px; font-size: 9px; color: #999; cursor: pointer;">{{ i }}</div>
       {%- endif -%}
     {%- endfor -%}
   </div>
+  <p id="aicr-day-title" style="text-align: center; font-size: 13px; color: #666; min-height: 18px; margin-top: 8px;"></p>
+
+  <script>
+    document.querySelectorAll('.aicr-day').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var titleEl = document.getElementById('aicr-day-title');
+        var title = el.getAttribute('data-title');
+        titleEl.textContent = title ? title : '';
+      });
+    });
+  </script>
   <h2>Le fil</h2>
   {%- assign sorted_posts = site.posts | sort: "date" -%}
   <div style="position: relative; margin: 20px 0; max-width: 600px;">
