@@ -5,7 +5,9 @@ layout: home
 <h2 class="section-title">chroniques</h2>
 
 <div class="chroniques-logo">
-  <img src="{{ '/assets/' | append: site.logo | relative_url }}" alt="Logo">
+  <img src="{{ '/assets/' | append: site.logo | relative_url }}"
+       alt="Logo"
+       style="width: 2.65px; height: 2.65px;">
 </div>
 
 {%- assign sorted_posts = site.posts | sort: "date" | reverse -%}
