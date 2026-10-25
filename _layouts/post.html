@@ -1,42 +1,39 @@
 ---
-layout: home
+layout: default
 ---
 <article class="journal-post">
   {{ content }}
 </article>
 
-{%- assign prev_post = false -%}
-{%- assign next_post = false -%}
-{%- assign found = false -%}
-{%- for post in site.posts | sort: "date" -%}
-  {%- if found -%}
-    {%- assign next_post = post -%}
-    {%- break -%}
-  {%- endif -%}
+{%- assign posts = site.posts | sort: "date" -%}
+{%- assign last = posts.size | minus: 1 -%}
+{%- assign idx = -1 -%}
+{%- for post in posts -%}
   {%- if post.url == page.url -%}
-    {%- assign found = true -%}
-  {%- else -%}
-    {%- assign prev_post = post -%}
+    {%- assign idx = forloop.index0 -%}
   {%- endif -%}
 {%- endfor -%}
 
-{%- if prev_post or next_post -%}
+{%- if idx >= 0 -%}
   <nav class="post-nav">
-    {%- if prev_post -%}
-      <a class="post-prev" href="{{ prev_post.url | relative_url }}">← Précédent</a>
-    {%- endif -%}
-    {%- if next_post -%}
-      <a class="post-next" href="{{ next_post.url | relative_url }}">Suivant →</a>
-    {%- endif -%}
+    <span class="post-prev">
+      {%- if idx > 0 -%}
+        {%- assign p = idx | minus: 1 -%}
+        {%- assign prev_post = posts[p] -%}
+        <a href="{{ prev_post.url | relative_url }}">← Précédent</a>
+      {%- endif -%}
+    </span>
+    <span class="post-next">
+      {%- if idx < last -%}
+        {%- assign n = idx | plus: 1 -%}
+        {%- assign next_post = posts[n] -%}
+        <a href="{{ next_post.url | relative_url }}">Suivant →</a>
+      {%- endif -%}
+    </span>
   </nav>
 {%- endif -%}
 
 <style>
-  .journal .journal-post,
-  .journal .journal-post p,
-  .journal .journal-post li {
-    font-family: inherit;
-  }
   .journal .post-nav {
     display: flex;
     justify-content: space-between;
@@ -44,7 +41,6 @@ layout: home
     padding-top: 14px;
     border-top: 1px solid #111;
     font-style: italic;
-    font-family: inherit;
   }
   .journal .post-nav a {
     color: #111;
