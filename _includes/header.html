@@ -1,12 +1,83 @@
+
 <header class="site-header" role="banner">
-  <div class="wrapper" style="display: flex; align-items: center; justify-content: center; position: relative;">
+  <div class="wrapper header-wrapper">
+
     {%- if site.logo -%}
-      <img src="{{ "/assets/" | append: site.logo | relative_url }}" alt="logo" style="height: 45px; position: absolute; left: 0;">
+      <img
+        src="{{ '/assets/' | append: site.logo | relative_url }}"
+        alt="Logo"
+        class="header-logo"
+      >
     {%- endif -%}
+
     <img
       src="{{ '/assets/header_reaict.png' | relative_url }}"
-      alt="header_reaict"
-      style="height: 45px; position: absolute; left: 50%; transform: translateX(-50%);"
+      alt="Bannière"
+      class="header-banner"
     >
+
   </div>
 </header>
+
+<style>
+  .site-header {
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .site-header .header-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 120px;
+    height: auto;
+    padding: 15px 10px;
+    box-sizing: border-box;
+  }
+
+  .site-header .header-logo {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: auto;
+    height: 45px;
+    max-width: 20%;
+    object-fit: contain;
+  }
+
+  .site-header .header-banner {
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 70%;
+    max-height: 120px;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @media (max-width: 600px) {
+    .site-header .header-wrapper {
+      min-height: 90px;
+      padding: 10px 5px;
+    }
+
+    .site-header .header-logo {
+      left: 5px;
+      height: 30px;
+      max-width: 18%;
+    }
+
+    .site-header .header-banner {
+      max-width: 76%;
+      max-height: 80px;
+    }
+  }
+</style>
