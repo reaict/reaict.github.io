@@ -2,7 +2,7 @@
 layout: home
 ---
 
-<h2 class="section-title">Le fil</h2>
+<h2 class="section-title">chroniques</h2>
 
 {%- assign sorted_posts = site.posts | sort: "date" | reverse -%}
 <ol>
