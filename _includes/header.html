@@ -1,10 +1,12 @@
 <header class="site-header" role="banner">
-  <div class="wrapper" style="display: flex; align-items: center; justify-content: center; position: relative;">
+  <div class="wrapper" style="display: flex; align-items: center; justify-content: center; position: relative; padding: 16px 0;">
     {%- if site.logo -%}
-      <img src="{{ "/assets/" | append: site.logo | relative_url }}" alt="logo" style="height: 60px; position: absolute; left: 0;">
+      <img src="{{ "/assets/" | append: site.logo | relative_url }}" alt="logo" style="height: 32px; position: absolute; left: 0; top: 50%; transform: translateY(-50%);">
     {%- endif -%}
-    <a class="site-title" href="{{ "/" | relative_url }}">
-    <span style="font-weight: 600;">RE</span><span style="font-weight: 400; color: #1D9E75;">AI</span><span style="font-weight: 600;">CT</span>
+    <a class="site-title" href="{{ "/" | relative_url }}" style="text-decoration: none; color: #111;">
+      <span style="font-family: Baskerville, 'Libre Baskerville', Georgia, serif; font-size: 44px; line-height: 1; letter-spacing: 0.02em;">
+        <span style="font-weight: 700;">RE</span><span style="font-weight: 700; color: #1D9E75;">CT</span><span style="font-weight: 700;">CT</span>
+      </span>
     </a>
   </div>
 </header>
