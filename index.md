@@ -7,7 +7,7 @@ layout: home
 <div class="chroniques-logo">
   <img src="{{ '/assets/' | append: site.logo | relative_url }}"
        alt="Logo"
-       style="width: 2.65px; height: 2.65px;">
+       style="width: 25px; height: 25px;">
 </div>
 
 {%- assign sorted_posts = site.posts | sort: "date" | reverse -%}
