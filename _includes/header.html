@@ -1,21 +1,18 @@
 
 <header class="site-header" role="banner">
   <div class="wrapper header-wrapper">
-
-  <a href="{{ '/' | relative_url }}">
-    <img
-      src="{{ '/assets/header_reaict.png' | relative_url }}"
-      alt="Bannière"
-      class="header-banner">
-  </a>
-
+    <a href="{{ '/' | relative_url }}" class="header-banner-link">
+      <img
+        src="{{ '/assets/header_reaict.png' | relative_url }}"
+        alt="Bannière"
+        class="header-banner">
+    </a>
   </div>
 </header>
 
 <style>
   .site-header {
     width: 100%;
-    height: auto;
     min-height: 120px;
     overflow: visible;
     box-sizing: border-box;
@@ -28,25 +25,23 @@
     justify-content: center;
     width: 100%;
     min-height: 120px;
-    height: auto;
     padding: 15px 10px;
     box-sizing: border-box;
   }
 
-  .site-header .header-logo {
+  .site-header .header-banner-link {
     position: absolute;
-    left: 15px;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    display: block;
-    width: auto;
-    height: 45px;
-    max-width: 20%;
-    object-fit: contain;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .site-header .header-banner {
-    position: relative;
     display: block;
     width: auto;
     height: auto;
@@ -60,12 +55,6 @@
     .site-header .header-wrapper {
       min-height: 90px;
       padding: 10px 5px;
-    }
-
-    .site-header .header-logo {
-      left: 5px;
-      height: 30px;
-      max-width: 18%;
     }
 
     .site-header .header-banner {
