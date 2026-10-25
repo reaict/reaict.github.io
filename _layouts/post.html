@@ -1,0 +1,57 @@
+---
+layout: home
+---
+<article class="journal-post">
+  {{ content }}
+</article>
+
+{%- comment -%} Trouve l'article précédent et l'article suivant (ordre chronologique) {%- endcomment -%}
+{%- assign prev_post = false -%}
+{%- assign next_post = false -%}
+{%- assign found = false -%}
+{%- for post in site.posts | sort: "date" -%}
+  {%- if found -%}
+    {%- assign next_post = post -%}
+    {%- break -%}
+  {%- endif -%}
+  {%- if post.url == page.url -%}
+    {%- assign found = true -%}
+  {%- else -%}
+    {%- assign prev_post = post -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if prev_post or next_post -%}
+  <nav class="post-nav">
+    {%- if prev_post -%}
+      <a class="post-prev" href="{{ prev_post.url | relative_url }}">← Précédent</a>
+    {%- endif -%}
+    {%- if next_post -%}
+      <a class="post-next" href="{{ next_post.url | relative_url }}">Suivant →</a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}
+
+<style>
+  .journal .journal-post,
+  .journal .journal-post p,
+  .journal .journal-post li {
+    font-family: inherit;
+  }
+  .journal .post-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    padding-top: 14px;
+    border-top: 1px solid #111;
+    font-style: italic;
+    font-family: inherit;
+  }
+  .journal .post-nav a {
+    color: #111;
+    text-decoration: none;
+  }
+  .journal .post-nav a:hover {
+    text-decoration: underline;
+  }
+</style>
