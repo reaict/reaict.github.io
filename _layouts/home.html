@@ -63,3 +63,13 @@ home: true
     margin-top: 2px;
   }
 </style>
+
+<div class="journal">
+  {%- if page.title -%}
+    <header class="masthead">
+      <h1>{{ page.title | escape }}</h1>
+    </header>
+  {%- endif -%}
+
+  {{ content }}
+</div>
