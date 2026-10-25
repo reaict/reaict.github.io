@@ -4,10 +4,10 @@ layout: home
 
 <h2 class="section-title">chroniques</h2>
 
-<div class="chroniques-logo">
+<div class="chroniques-logo" style="display: flex; justify-content: center;">
   <img src="{{ '/assets/' | append: site.logo | relative_url }}"
        alt="Logo"
-       style="width: 25px; height: 25px;">
+       style="width: 60px; height: 60px;">
 </div>
 
 {%- assign sorted_posts = site.posts | sort: "date" | reverse -%}
